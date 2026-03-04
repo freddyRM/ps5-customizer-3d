@@ -1,0 +1,383 @@
+/* :root {
+  --bg: #0b1020;
+  --panel: #0f172a;
+  --card: rgba(255, 255, 255, 0.06);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.62);
+  --stroke: rgba(255, 255, 255, 0.12);
+  --accent: #22c55e;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+#app {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+}
+
+.panel {
+  padding: 16px;
+  border-right: 1px solid var(--stroke);
+  background: var(--panel);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; }
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.55);
+}
+.title { font-weight: 800; letter-spacing: 0.2px; font-size: 1.1rem; }
+.sub { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cardTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.row { display: flex; gap: 10px; margin-bottom: 8px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+
+button, select, input[type="color"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: calc(100% - 12px) center; }
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
+}
+
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+input[type="color"] {
+  height: 40px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.field span { display: block; font-size: 11px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+
+.hint { font-size: 11px; color: var(--muted); margin-top: 10px; line-height: 1.4; font-style: italic; }
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: rgba(0, 0, 0, 0.3);
+  color: #22c55e;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  resize: none;
+}
+
+#shotWrap { margin-top: 15px; position: relative; }
+#shotWrap img {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+}
+
+.label-3d-glow {
+  background: var(--accent);
+  color: #052e16;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 0 20px var(--accent);
+  pointer-events: none;
+  transform: translateY(-20px);
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(-20px); }
+  50% { transform: translateY(-25px); }
+}
+
+.footer { font-size: 11px; color: var(--muted); margin-top: auto; padding-top: 20px; text-align: center; }
+
+.stage { 
+  position: relative; 
+  width: 100%; 
+  height: 100vh; 
+  overflow: hidden;
+  display: flex;
+}
+
+canvas { 
+  width: 100% !important; 
+  height: 100% !important; 
+  display: block; 
+}
+
+.overlay { position: absolute; bottom: 20px; right: 20px; pointer-events: none; }
+.pill {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--stroke);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--text);
+  backdrop-filter: blur(10px);
+} */
+
+:root {
+  --bg: #0b1020;
+  --panel: #0f172a;
+  --card: rgba(255, 255, 255, 0.06);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.62);
+  --stroke: rgba(255, 255, 255, 0.12);
+  --accent: #3b82f6;
+  --success: #22c55e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden; /* Evita scrolls dobles */
+}
+
+/* LAYOUT PRINCIPAL */
+#app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* PANEL LATERAL (Escritorio) */
+.panel {
+  width: 360px;
+  height: 100%;
+  padding: 24px;
+  background: var(--panel);
+  border-right: 1px solid var(--stroke);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+/* CONTENEDOR 3D */
+.stage-container {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(circle at center, #1e293b 0%, #0b1020 100%);
+  overflow: hidden;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none; /* Mejora el control táctil en móviles */
+}
+
+/* ELEMENTOS DE INTERFAZ */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--success);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.sub {
+  font-size: 11px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+/* FORMULARIOS */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.field span {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+select, button, input[type="color"] {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--stroke);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+select:focus, button:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+button {
+  cursor: pointer;
+  background: var(--accent);
+  font-weight: 700;
+  border: none;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 15px;
+  background: #020617;
+  border: 1px solid var(--stroke);
+  color: var(--success);
+  font-family: monospace;
+  font-size: 11px;
+  padding: 10px;
+  border-radius: 8px;
+  resize: none;
+}
+
+/* OVERLAY 3D */
+.overlay {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  pointer-events: none;
+}
+
+.pill {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid var(--stroke);
+  font-size: 13px;
+  color: white;
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column-reverse; /* Panel abajo, 3D arriba */
+  }
+
+  .panel {
+    width: 100%;
+    height: 45vh; /* El panel ocupa el 45% inferior */
+    border-right: none;
+    border-top: 1px solid var(--stroke);
+    padding: 20px;
+  }
+
+  .stage-container {
+    height: 55vh; /* El modelo ocupa el 55% superior */
+    flex: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* Una sola columna en móvil para los inputs */
+  }
+
+  .overlay {
+    top: 20px;
+    bottom: auto;
+    right: 20px;
+  }
+}
