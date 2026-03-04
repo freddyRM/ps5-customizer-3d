@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 🎮 PS5 Customizer 3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Personaliza tu propio control de PS5 en tiempo real! Este proyecto es un configurador 3D interactivo construido con **React**, **Three.js** y **React Three Fiber**.
 
-Currently, two official plugins are available:
+## 🚀 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interacción 3D Real:** Rota, haz zoom y explora el modelo con total libertad.
+- **Personalización por Piezas:** Haz clic directamente en cualquier parte del control (carcasa, botones, sticks) para cambiar su color.
+- **Acabados de Materiales:** Elige entre acabados **Mate**, **Brillante** o **Metálico** con reflejos realistas.
+- **Exportación JSON:** Genera un archivo de configuración con tus elecciones para guardarlas o procesarlas.
+- **Diseño Responsive:** Optimizado para una experiencia fluida tanto en PC como en dispositivos móviles.
 
-## React Compiler
+## 🛠️ Tecnologías Usadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - Framework de UI.
+- **Three.js** - Motor gráfico 3D.
+- **React Three Fiber / Drei** - El puente entre React y Three.js.
+- **Vite** - Herramienta de construcción ultra rápida.
+- **TypeScript** - Tipado estático para un código más robusto.
 
-## Expanding the ESLint configuration
+## 📦 Instalación y Uso
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **Clona el repositorio:**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    ```bash
+    git clone [https://github.com/freddyRM/ps5-customizer-3d.git](https://github.com/freddyRM/ps5-customizer-3d.git)
+    cd ps5-customizer-3d
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2.  **Instala las dependencias:**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```bash
+    npm install
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.  **Corre el proyecto en modo desarrollo:**
+    ```bash
+    npm run dev
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🌐 Despliegue
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+El proyecto está configurado para desplegarse automáticamente en **GitHub Pages**.
+Puedes verlo en vivo aquí: [https://freddyRM.github.io/ps5-customizer-3d/](https://freddyRM.github.io/ps5-customizer-3d/)
+
+---
+
+Creado con ❤️ por [FreddyRM](https://github.com/freddyRM)
