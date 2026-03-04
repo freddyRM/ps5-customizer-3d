@@ -32,7 +32,8 @@ function Model({
   config: Config;
 }) {
   // Asegúrate de que la ruta al GLB sea correcta en tu carpeta /public
-  const { scene } = useGLTF("/models/controller.glb");
+  // const { scene } = useGLTF("/models/controller.glb");//local
+  const { scene } = useGLTF("./models/controller.glb"); //github pages
   const hasProcessed = useRef(false);
 
   useEffect(() => {
